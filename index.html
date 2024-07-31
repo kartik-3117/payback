@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payback Gym</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @font-face {
+  font-family: "K2D";
+  src: url(K2D-Regular.ttf);
+}
+        /* General Styles */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'K2D';
+        }
+
+        /* Navbar Styles */
+        .navbar-brand {
+            font-size: 1.5em;
+            color: #00FF00;
+        }
+
+        .navbar-brand:hover {
+            color: #4CAF50;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.25em;
+            color: #00FF00;
+        }
+
+        /* Add this CSS code to your existing styles */
+
+/* Navbar Link Hover Effect */
+.navbar-nav .nav-link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #00FF00; /* Green color for the underline */
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
+
+
+        .navbar-transparent {
+            background: transparent;
+        }
+
+        .navbar-black {
+            background-color: #000000a9;
+        }
+
+        /* Navbar Toggle Button Styles */
+        .navbar-toggler {
+            border: 2px solid #00FF00;
+            /* Green border color */
+            background-color: transparent;
+            /* Transparent background */
+            position: relative;
+            width: 2em;
+            /* Adjust width as needed */
+            height: 2em;
+            /* Adjust height as needed */
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            /* Remove default icon image */
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            display: block;
+            width: 1.5em;
+            /* Width of the lines */
+            height: 2px;
+            /* Thickness of the lines */
+            background-color: #00FF00;
+            /* Green color for the lines */
+            position: absolute;
+            left: 50%;
+            /* Center horizontally */
+            transform: translateX(-50%);
+            /* Center horizontally */
+            transition: background-color 0.3s;
+        }
+
+        .navbar-toggler-icon::before {
+            top: 30%;
+            /* Position of the top line */
+        }
+
+        .navbar-toggler-icon::after {
+            top: 50%;
+            /* Position of the middle line */
+            transform: translateX(-50%) rotate(0deg);
+            /* Center horizontally */
+        }
+
+        .navbar-toggler-icon::after {
+            top: 70%;
+            /* Position of the bottom line */
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+            /* Remove focus shadow */
+        }
+
+        /* Welcome Section */
+        #welcome {
+            position: relative;
+            color: #fff;
+            height: 100vh;
+            background-image: url('program_image2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #welcome .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        #welcome .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding-top: 20%;
+        }
+
+        #welcome h1 {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        #welcome p {
+            font-size: 1.25em;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        /* Home Section */
+        #home {
+            background: #1c1c1c;
+            text-align: center;
+            font-size: 1.25em;
+        }
+
+        #home h2 {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        #home img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            /* Adjust max-width as needed */
+            padding: 0%;
+            margin: 0%;
+        }
+
+        @media (max-width: 767px) {
+            .navbar-brand {
+                font-size: 2em;
+            }
+
+            .navbar-collapse {
+                background-color:  #000000a9;
+                /* Black background color for mobile view */
+            }
+
+            .navbar-nav .nav-link {
+                text-align: center;
+                justify-content: center;
+                color: #fff;
+                /* White text color in mobile view */
+            }
+
+            #home {
+                background-image: url('program_image5.png');
+                background-size: cover;
+                background-position: center;
+                color: #fff;
+                position: relative;
+                /* Added to enable absolute positioning of content */
+            }
+
+            #home::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                /* Adjust the darkness by changing the opacity */
+                z-index: 1;
+            }
+
+            #home h2,
+            #home p {
+                position: relative;
+                /* Ensures the text is above the background image */
+                z-index: 2;
+                /* Keeps text above the background image */
+            }
+
+            #home .container {
+                padding-top: 20%;
+                /* Adjust padding as needed */
+                position: relative;
+                z-index: 2;
+            }
+
+            #home img {
+                display: none;
+            }
+        }
+
+        /* Spacer Styles */
+        .spacer-small {
+            height: 20px;
+        }
+
+        .spacer-large {
+            height: 60px;
+        }
+
+        @media (min-width: 768px) {
+            .spacer-small {
+                height: 150px;
+            }
+        }
+
+        /* Our Trainers Section */
+        #trainers {
+            background: #1c1c1c;
+        }
+
+        .trainer-card {
+            background: #1c1c1c;
+            transition: transform 0.3s, box-shadow 0.3s;
+
+        }
+
+        .trainer-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.5);
+        }
+
+        .card-img-top {
+            transition: transform 0.3s;
+        }
+
+        .card-img-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* Gallery Section */
+        #gallery {
+            text-align: center;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            /* Adjust max-width as needed */
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Us Section */
+        #contact {
+            background: #292929;
+        }
+
+        #contact p {
+            font-size: 1.25em;
+        }
+
+        .btn-success {
+            background-color: #00FF00;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-success:hover {
+            background-color: #4CAF50;
+        }
+
+        /* Form Styles */
+        form {
+            margin-top: 20px;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        textarea.form-control {
+            resize: none;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #000;
+        }
+
+        footer .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        footer .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        footer h5 {
+            font-size: 1.25em;
+            color: #00FF00;
+        }
+
+        footer a {
+            color: #00FF00;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #4CAF50;
+        }
+
+        footer i {
+            color: #00FF00;
+            transition: color 0.3s;
+        }
+
+        footer i:hover {
+            color: #4CAF50;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer .text-light {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-transparent">
+        <a class="navbar-brand" href="#">
+            <img src="program_image_logo.png" alt="Logo" style="height: 50px;">
+            Payback Gym
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#trainers">Our Trainers</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="text-light d-flex align-items-center justify-content-center">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1 data-aos="fade-up" style="color: #00FF00;">Welcome to Payback Gym!</h1>
+            <p data-aos="fade-up" data-aos-delay="300">Your journey to a healthier, stronger, and fitter you begins
+                here. At Payback Gym, we believe in empowering you to achieve your fitness goals through personalized
+                training, state-of-the-art facilities, and a supportive community.</p>
+        </div>
+    </section>
+
+    <!-- Home Section -->
+    <section id="home" class="py-5 text-light">
+        <div class="container mb-0">
+            <div class="row">
+                <div class="col-md-6 container text-center">
+                    <div>
+                        <br>
+                        <h2 data-aos="fade-up">Welcome to <span style="color: #00FF00;">Payback Gym</span></h2>
+                        <p data-aos="fade-up" data-aos-delay="300">Payback Gym is your ultimate destination for fitness
+                            transformation. Whether you're a beginner or a seasoned athlete, our gym offers a wide range
+                            of services designed to help you succeed. From high-intensity workouts to relaxing yoga
+                            sessions, we have something for everyone.</p>
+                    </div>
+                    <!-- Spacer -->
+                    <div class="spacer-small"></div>
+                    <div class="mt-5">
+                        <h2 data-aos="fade-up">About <span style="color: #00FF00;">Payback Gym</span></h2>
+                        <p data-aos="fade-up" data-aos-delay="300">At Payback Gym, we are committed to providing a
+                            comprehensive fitness experience. Our mission is to inspire and empower individuals to lead
+                            healthier lives through fitness and well-being. Our facility is equipped with cutting-edge
+                            equipment and staffed by experienced trainers dedicated to helping you reach your goals.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="program_image5.png" alt="Home Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Trainers Section -->
+    <section id="trainers" class="py-5 text-light">
+        <div class="container text-center">
+            <h2 data-aos="fade-up" style="color: #00FF00 ;">Meet Our Trainers</h2>
+            <br>
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card trainer-card">
+                        <img src="program_image6.png" class="card-img-top" alt="Trainer Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Rohit Verma</h5>
+                            <p class="card-text">Conditioning Specialist</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card trainer-card">
+                        <img src="program_image7.png" class="card-img-top" alt="Trainer Image" style="padding: 40px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Priya Nair</h5>
+                            <p class="card-text">Certified Yoga Instructor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card trainer-card">
+                        <img src="program_image9.png" class="card-img-top" alt="Trainer Image" style="padding: 40px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Deepak Reddy</h5>
+                            <p class="card-text">Nutrition & Wellness Coach</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card trainer-card">
+                        <img src="program_image8.png" class="card-img-top" alt="Trainer Image" style="padding: 20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Vijay Kumar</h5>
+                            <p class="card-text">Cardio & Aerobics Trainer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5 text-light">
+        <div class="container text-center">
+            <h2 data-aos="fade-up" style="color: #00FF00;">Gallery</h2>
+            <br>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <img src="program_image9.jpg" class="gallery-img" alt="Gallery Image">
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <img src="program_image10.png" class="gallery-img" alt="Gallery Image">
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <img src="program_image11.png" class="gallery-img" alt="Gallery Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-5 text-light">
+        <div class="container text-center">
+            <h2 data-aos="fade-up" style="color: #00FF00;">Contact Us</h2>
+            <p data-aos="fade-up" data-aos-delay="300">Have any questions or need more information? Reach out to us and
+                we'll be happy to assist you.</p>
+            <form data-aos="fade-up" data-aos-delay="400">
+                <div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group ">
+                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Logo and Company Name -->
+                <div class="col-md-4 mb-4" style="text-align: center;">
+                    <a class="navbar-brand text-light" href="#" style="justify-content: center;">
+                        <img src="program_image_logo.png" alt="Logo" style="height: 50px;">
+                        <span style="color: #00FF00;">Payback Gym</span>
+                    </a>
+                    <p>Your ultimate destination for fitness transformation.</p>
+                </div>
+                <!-- Footer Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 style="text-align: center;">Quick Links</h5>
+                    <ul class="list-unstyled" style="text-align: center;">
+                        <li><a class="text-light" href="#welcome">Home</a></li>
+                        <li><a class="text-light" href="#home">About</a></li>
+                        <li><a class="text-light" href="#trainers">Our Trainers</a></li>
+                        <li><a class="text-light" href="#gallery">Gallery</a></li>
+                        <li><a class="text-light" href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Footer Contact and Social Media Links -->
+                <div class="col-md-4 mb-4 " style="text-align: center;">
+                    <h5>Contact Us</h5>
+                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> payback@gmail.com</p>
+                    <h5 style="margin-top: 20px;">Follow Us</h5>
+                    <a href="https://www.instagram.com" class="text-light mr-3">
+                        <i class="fab fa-instagram fa-2x"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" class="text-light mr-3">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>&copy; <span id="currentYear"></span> Kartik Khatri. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        $(window).on('scroll', function () {
+            var navbar = $('#navbar');
+            if ($(window).scrollTop() > $('#welcome').height()) {
+                navbar.removeClass('navbar-transparent').addClass('navbar-black');
+            } else {
+                navbar.removeClass('navbar-black').addClass('navbar-transparent');
+            }
+        });
+    </script>
+</body>
+
+</html>
